@@ -2,8 +2,8 @@ apiVersion: ecr.aws.upbound.io/v1beta1
 kind: Repository
 metadata:
   labels:
-    testing.upbound.io/example-name: ecr-repo
-  name: ecr-repo
+    testing.upbound.io/example-name: sample-app
+  name: sample-app
 spec:
   forProvider:
     imageScanningConfiguration:

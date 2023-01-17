@@ -1,0 +1,41 @@
+apiVersion: ecs.aws.upbound.io/v1beta1
+kind: TaskDefinition
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-task
+  name: sample-task
+spec:
+  forProvider:
+    containerDefinitions: |-
+      [
+        {
+          "name": "sample-app",
+          "image": "011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest,
+          "cpu": 256,
+          "memory": 512,
+          "essential":true
+          "PortMappings": [
+            {
+            "ContainerPort" : 8081,
+            "Protocol" : tcp 
+            }
+          ]
+        }
+      ]
+    cpu: 256
+    family: sample-task-family
+    memory: 512
+    networkMode: awsvpc
+    region: us-east-1
+    requiresCompatibilities: FARGATE
+
+# "PortMappings": [
+  # {
+  #   "AppProtocol" : String,
+  #   "ContainerPort" : Integer,
+  #   "ContainerPortRange" : String,
+  #   "HostPort" : Integer,
+  #   "Name" : String,
+  #   "Protocol" : String
+  # }
+# ]
