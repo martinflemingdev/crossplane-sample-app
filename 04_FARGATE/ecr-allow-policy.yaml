@@ -16,6 +16,16 @@ spec:
               "ecr:*"
             ],
             "Resource": "*"
+          },
+          {
+              "Effect": "Allow",
+              "Action": "ecr:GetAuthorizationToken",
+              "Resource": "*"
+          },
+          {
+              "Effect": "Allow",
+              "Action": "ecr:InitiateLayerUpload",
+              "Resource": "*"
           }
         ]
       }

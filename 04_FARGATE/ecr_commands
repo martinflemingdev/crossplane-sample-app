@@ -1,0 +1,8 @@
+# Login to ECR
+aws ecr get-login-password --region REGIONHERE | docker login --username AWS --password-stdin ACCOUNTIDHERE.dkr.ecr.REGIONHERE.amazonaws.com
+
+# Tag the version
+docker tag test:latest YOURACCOUNT.dkr.ecr.YOURREGION-1.amazonaws.com/YOURREPO:YOURTAG
+
+# Upload
+docker push YOURACCOUNT.dkr.ecr.YOURREGION.amazonaws.com/YOURREPO:YOURTAG

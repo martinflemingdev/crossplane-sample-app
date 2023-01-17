@@ -1,6 +1,7 @@
 from flask import render_template
 from flask import Flask
 from db import query_rds
+import traceback
 
 app = Flask(__name__)
 hostname = "<hostname>"
@@ -14,13 +15,16 @@ def home():
     return render_template('index.html')
 
 @app.route('/app')
-def app():
+def path():
     return "Hello, from App Path!"
 
-@app.route('/db')
-def db():
-    result = query_rds(hostname, dbname, user, password, query)
-    return result
+@app.route('/rds')
+def db_query():
+    try:
+        result = query_rds(hostname, dbname, user, password, query)
+        return str(result)
+    except:
+        return str(traceback.format_exc())
 
 
 if __name__ == '__main__':
