@@ -1,0 +1,14 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: UserPolicyAttachment
+metadata:
+  labels:
+    testing.upbound.io/example-name: ecr-user-policy-attach
+  name: ecr-user-policy-attach
+spec:
+  forProvider:
+    policyArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: allow-ecr-policy
+    userSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ecr-user

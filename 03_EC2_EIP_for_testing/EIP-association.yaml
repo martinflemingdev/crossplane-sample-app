@@ -8,8 +8,8 @@ spec:
   forProvider:
     allocationIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: elastic-ip-lb
+        testing.upbound.io/example-name: elastic-ip
     instanceIdSelector:
       matchLabels:
-        testing.upbound.io/example-name: upbound-test-instance
+        testing.upbound.io/example-name: upbound-jumpbox
     region: us-east-1

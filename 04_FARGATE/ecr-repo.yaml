@@ -1,0 +1,12 @@
+apiVersion: ecr.aws.upbound.io/v1beta1
+kind: Repository
+metadata:
+  labels:
+    testing.upbound.io/example-name: ecr-repo
+  name: ecr-repo
+spec:
+  forProvider:
+    imageScanningConfiguration:
+      - scanOnPush: true
+    imageTagMutability: IMMUTABLE
+    region: us-east-1

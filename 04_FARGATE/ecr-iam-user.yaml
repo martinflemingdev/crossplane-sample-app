@@ -1,0 +1,9 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: User
+metadata:
+  labels:
+    testing.upbound.io/example-name: ecr-user
+  name: ecr-user
+spec:
+  forProvider: {}
+    # permissionsBoundary: string

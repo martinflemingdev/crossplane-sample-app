@@ -1,0 +1,21 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Policy
+metadata:
+  labels:
+    testing.upbound.io/example-name: allow-ecr-policy
+  name: allow-ecr-policy
+spec:
+  forProvider:
+    policy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "ecr:*"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
