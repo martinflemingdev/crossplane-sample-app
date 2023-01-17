@@ -1,3 +1,4 @@
+# ClientException: Fargate requires task definition to have execution role ARN to support ECR images.
 apiVersion: ecs.aws.upbound.io/v1beta1
 kind: TaskDefinition
 metadata:
@@ -6,28 +7,29 @@ metadata:
   name: sample-task
 spec:
   forProvider:
-    containerDefinitions: |-
+    containerDefinitions: |
       [
         {
           "name": "sample-app",
-          "image": "011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest,
+          "image": "011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest",
           "cpu": 256,
           "memory": 512,
-          "essential":true
+          "essential": true,
           "PortMappings": [
             {
             "ContainerPort" : 8081,
-            "Protocol" : tcp 
+            "Protocol" : "tcp" 
             }
           ]
         }
       ]
-    cpu: 256
+    cpu: '256' # must be string
     family: sample-task-family
-    memory: 512
+    memory: '512' # must be string
     networkMode: awsvpc
     region: us-east-1
-    requiresCompatibilities: FARGATE
+    requiresCompatibilities: 
+      - FARGATE
 
 # "PortMappings": [
   # {

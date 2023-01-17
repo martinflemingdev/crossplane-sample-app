@@ -1,0 +1,14 @@
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBTargetGroupAttachment
+metadata:
+  labels:
+    testing.upbound.io/example-name: http-target-group-attachment
+  name: http-target-group-attachment
+spec:
+  forProvider:
+    port: 8081 # The port on which targets receive traffic.
+    region: us-east-1
+    targetGroupArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: http-target-group
+    # targetId: 172.16.10.25
