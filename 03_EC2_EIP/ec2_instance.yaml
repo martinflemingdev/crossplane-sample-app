@@ -1,0 +1,18 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Instance
+metadata:
+  labels:
+    testing.upbound.io/example-name: upbound-test-instance
+  name: upbound-test-instance
+spec:
+  forProvider:
+    ami: ami-0b5eea76982371e91
+    instanceType: t2.micro
+    keyName: upbound-test
+    region: us-east-1
+    subnetIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: subnet-us-east-1a
+    vpcSecurityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1

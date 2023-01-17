@@ -1,0 +1,13 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EIP
+metadata:
+  labels:
+    testing.upbound.io/example-name: elastic-ip-lb
+  name: elastic-ip-lb
+spec:
+  forProvider:
+    instanceSelector:
+      matchLabels:
+        testing.upbound.io/example-name: upbound-test-instance
+    region: us-east-1
+    vpc: true

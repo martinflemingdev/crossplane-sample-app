@@ -1,0 +1,15 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: EIPAssociation
+metadata:
+  labels:
+    testing.upbound.io/example-name: eip-assoc
+  name: eip-assoc
+spec:
+  forProvider:
+    allocationIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: elastic-ip-lb
+    instanceIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: upbound-test-instance
+    region: us-east-1

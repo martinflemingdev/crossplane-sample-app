@@ -1,0 +1,11 @@
+apiVersion: s3.aws.upbound.io/v1beta1
+kind: Bucket
+metadata: 
+  name: martinflemingsawesomeathenabucket
+  annotations:
+    crossplane.io/external-name: martinflemingsawesomeathenabucket
+spec:
+  forProvider:
+    region: us-east-1
+  providerConfigRef:
+    name: default

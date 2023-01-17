@@ -1,0 +1,39 @@
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBListener
+metadata:
+  labels:
+    testing.upbound.io/example-name: https-listener
+  name: https-listener
+spec:
+  forProvider:
+    defaultAction:
+    - type: fixed-response
+      fixedResponse:
+        - contentType: text/plain
+          messageBody: https-listener rule reached
+          statusCode: "200"
+    loadBalancerArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: application-lb
+    port: 443
+    region: us-east-1
+---
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBListener
+metadata:
+  labels:
+    testing.upbound.io/example-name: http-listener
+  name: http-listener
+spec:
+  forProvider:
+    defaultAction:
+    - type: fixed-response
+      fixedResponse:
+        - contentType: text/plain
+          messageBody: http-listener rule reached
+          statusCode: "200"
+    loadBalancerArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: application-lb
+    port: 80
+    region: us-east-1

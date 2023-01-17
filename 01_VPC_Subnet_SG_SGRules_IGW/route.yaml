@@ -1,0 +1,16 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: Route
+metadata:
+  labels:
+    testing.upbound.io/example-name: route-us-east-1
+  name: route
+spec:
+  forProvider:
+    destinationCidrBlock: 0.0.0.0/0
+    gatewayIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: internet-gateway-us-east-1
+    region: us-east-1
+    routeTableIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: routetable-us-east-1

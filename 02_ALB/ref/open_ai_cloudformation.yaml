@@ -1,0 +1,59 @@
+Resources:
+  LoadBalancer:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: MyLoadBalancer
+      Scheme: internal
+      Subnets:
+        - subnet-AAAA1111
+        - subnet-BBBB2222
+      SecurityGroups:
+        - !Ref mySecurityGroup
+      IpAddressType: ipv4
+
+  ACMCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: example.com
+      SubjectAlternativeNames:
+        - www.example.com
+      ValidationMethod: DNS
+
+  DNSRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZone
+      Name: example.com
+      Type: CNAME
+      ResourceRecords:
+        - !GetAtt ACMCertificate.DomainValidationOptions.0.ResourceRecordName
+        - !GetAtt ACMCertificate.DomainValidationOptions.0.ResourceRecordValue
+      TTL: '300'
+
+  Listener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      DefaultActions:
+        - Type: forward
+          TargetGroupArn: !Ref TargetGroup
+      LoadBalancerArn: !Ref LoadBalancer
+      Port: 443
+      Protocol: HTTPS
+      Certificates:
+        - CertificateArn: !Ref ACMCertificate
+
+  TargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: myTargetGroup
+      Protocol: HTTP
+      Port: 80
+      VpcId: !Ref VpcId
+  
+  Target:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      TargetGroupArn: !Ref TargetGroup
+      Targets:
+        - Id: !Ref InstanceId
+          Port: 80
