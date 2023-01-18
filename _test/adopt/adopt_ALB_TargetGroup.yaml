@@ -1,0 +1,14 @@
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBTargetGroup
+metadata:
+  annotations:
+    crossplane.io/external-name: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/14b5a7f2ed5d775b
+  labels:
+    testing.upbound.io/example-name: http-target-group
+  name: http-target-group
+spec:
+  forProvider:
+    region: us-east-1
+    name: sample-app-target-group
+  providerConfigRef:
+    name: default

@@ -1,0 +1,34 @@
+apiVersion: ecs.aws.upbound.io/v1beta1
+kind: Service
+metadata:
+  annotations:
+    upjet.upbound.io/manual-intervention: This resource requires manual intervention
+      for adding task definition revision. Otherwise, resource will be updated
+      to use latest revision.
+    crossplane.io/external-name: arn:aws:ecs:us-east-1:011882408883:service/sample-app-cluster/sample-app-service
+  labels:
+    testing.upbound.io/example-name: sample-service
+  name: sample-service
+spec:
+  forProvider:
+    clusterSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ecs-cluster
+    desiredCount: 1
+    launchType: FARGATE
+    loadBalancer:
+      - containerName: sample-app
+        containerPort: 8081
+        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/http-target-group/3acf426e4b50e905
+    networkConfiguration: # required for FARGATE (networkMode: awsvpc)
+      - assignPublicIp: false
+        securityGroupSelector:
+          matchLabels:
+            testing.upbound.io/example-name: sg-us-east-1
+        subnetSelector:
+          matchLabels:
+            testing.upbound.io/example-name: subnet-us-east-1a
+            testing.upbound.io/example-name: subnet-us-east-1b
+    propagateTags: TASK_DEFINITION
+    region: us-east-1
+    taskDefinition: sample-task-family

@@ -1,0 +1,14 @@
+# ALB
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LB
+metadata:
+  annotations:
+    crossplane.io/external-name: arn:aws:elasticloadbalancing:us-east-1:011882408883:loadbalancer/app/sample-app-lb/305ea6fe92eee750
+  labels:
+    testing.upbound.io/example-name: application-lb
+  name: application-lb
+spec:
+  forProvider:
+    region: us-east-1
+  providerConfigRef:
+    name: default

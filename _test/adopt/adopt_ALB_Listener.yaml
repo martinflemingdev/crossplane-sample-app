@@ -1,0 +1,17 @@
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBListener
+metadata:
+  annotations:
+    crossplane.io/external-name: arn:aws:elasticloadbalancing:us-east-1:011882408883:listener/app/sample-app-lb/305ea6fe92eee750/5e103a447864f3c5
+  labels:
+    testing.upbound.io/example-name: http-listener
+  name: http-listener
+spec:
+  forProvider:
+    region: us-east-1
+    defaultAction:
+      - forward:
+          - targetGroup:
+            - arn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/14b5a7f2ed5d775b
+        type: forward
+    loadBalancerArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:loadbalancer/app/sample-app-lb/305ea6fe92eee750
