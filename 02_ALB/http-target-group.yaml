@@ -6,8 +6,6 @@ metadata:
   name: sample-app-target-group
 spec:
   forProvider:
-    healthCheck:
-      enabled: false
     name: sample-app-target-group
     port: 8081 # container port
     protocol: HTTP

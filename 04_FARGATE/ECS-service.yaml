@@ -29,7 +29,8 @@ spec:
       - containerName: sample-app-container	
         containerPort: 8081
         # no selector option for this ARN, must be hardcoded??
-        targetGroupArn: << FILL_THIS_IN >>
+        # targetGroupArn: << FILL_THIS_IN >>
+        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/006f78dcfa4f2951
     networkConfiguration:
     - assignPublicIp: false
       # subnets:
