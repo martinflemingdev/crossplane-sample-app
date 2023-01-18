@@ -2,19 +2,21 @@ apiVersion: elbv2.aws.upbound.io/v1beta1
 kind: LBListener
 metadata:
   labels:
-    testing.upbound.io/example-name: http-listener
-  name: http-listener
+    testing.upbound.io/example-name: sample-app-listener
+  name: sample-app-listener
 spec:
   forProvider:
-    # NEEDS TO POINT TO TARGET GROUP
-    # defaultAction:
-    # - type: fixed-response
-    #   fixedResponse:
-    #     - contentType: text/plain
-    #       messageBody: http-listener rule reached
-    #       statusCode: "200"
+    defaultAction:
+    - forward:
+      - targetGroup:
+        # - arn: << FILL_THIS_IN >>
+        - arnSelector:
+            matchLabels:
+              testing.upbound.io/example-name: sample-app-target-group
+      type: forward
     loadBalancerArnSelector:
       matchLabels:
-        testing.upbound.io/example-name: application-lb
+        testing.upbound.io/example-name: sample-app-alb
     port: 80
+    protocol: HTTP # default
     region: us-east-1

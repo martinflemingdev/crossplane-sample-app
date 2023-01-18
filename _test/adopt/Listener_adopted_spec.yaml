@@ -1,0 +1,18 @@
+Spec:
+  Deletion Policy:  Delete
+  For Provider:
+    Default Action:
+      Forward:
+        Target Group:
+          Arn:          arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/14b5a7f2ed5d775b
+      Type:             forward
+    Load Balancer Arn:  arn:aws:elasticloadbalancing:us-east-1:011882408883:loadbalancer/app/sample-app-lb/305ea6fe92eee750
+    Port:               80
+    Protocol:           HTTP
+    Region:             us-east-1
+    Tags:
+      Crossplane - Kind:            lblistener.elbv2.aws.upbound.io
+      Crossplane - Name:            http-listener
+      Crossplane - Providerconfig:  default
+  Provider Config Ref:
+    Name:  default

@@ -1,3 +1,8 @@
+# Does not work, error from crossplane is:
+# observe failed: cannot run refresh: refresh failed: error reading ECS service 
+# (arn:aws:ecs:us-east-1:011882408883:cluster/sample-app-cluster/arn:aws:ecs:us-east-1:011882408883:service/sample-app-cluster/sample-app-service): 
+# InvalidParameterException: Unsupported resource type: cluster:
+
 apiVersion: ecs.aws.upbound.io/v1beta1
 kind: Service
 metadata:
@@ -14,21 +19,28 @@ spec:
     clusterSelector:
       matchLabels:
         testing.upbound.io/example-name: ecs-cluster
-    desiredCount: 1
-    launchType: FARGATE
-    loadBalancer:
-      - containerName: sample-app
-        containerPort: 8081
-        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/http-target-group/3acf426e4b50e905
-    networkConfiguration: # required for FARGATE (networkMode: awsvpc)
-      - assignPublicIp: false
-        securityGroupSelector:
-          matchLabels:
-            testing.upbound.io/example-name: sg-us-east-1
-        subnetSelector:
-          matchLabels:
-            testing.upbound.io/example-name: subnet-us-east-1a
-            testing.upbound.io/example-name: subnet-us-east-1b
-    propagateTags: TASK_DEFINITION
+    # desiredCount: 1
+    # launchType: FARGATE
+    # loadBalancer:
+    #   - containerName: sample-app-container
+    #     containerPort: 8081
+    #     targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/14b5a7f2ed5d775b
+    # networkConfiguration:
+    #   - assignPublicIp: true
+    #     subnets:
+    #       - subnet-5f88ce7e
+    #         subnet-2b909866
+    #     securityGroups:
+    #       - sg-0498e6c9299b2fa83
+    # networkConfiguration: # required for FARGATE (networkMode: awsvpc)
+    #   - assignPublicIp: false
+    #     securityGroupSelector:
+    #       matchLabels:
+    #         testing.upbound.io/example-name: sg-us-east-1
+    #     subnetSelector:
+    #       matchLabels:
+    #         testing.upbound.io/example-name: subnet-us-east-1a
+    #         testing.upbound.io/example-name: subnet-us-east-1b
+    # propagateTags: TASK_DEFINITION
     region: us-east-1
     taskDefinition: sample-task-family

@@ -2,11 +2,13 @@ apiVersion: elbv2.aws.upbound.io/v1beta1
 kind: LBTargetGroup
 metadata:
   labels:
-    testing.upbound.io/example-name: http-target-group
-  name: http-target-group
+    testing.upbound.io/example-name: sample-app-target-group
+  name: sample-app-target-group
 spec:
   forProvider:
-    name: http-target-group
+    healthCheck:
+      enabled: false
+    name: sample-app-target-group
     port: 8081 # container port
     protocol: HTTP
     region: us-east-1

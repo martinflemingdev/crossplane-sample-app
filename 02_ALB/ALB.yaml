@@ -3,15 +3,14 @@ apiVersion: elbv2.aws.upbound.io/v1beta1
 kind: LB
 metadata:
   labels:
-    testing.upbound.io/example-name: application-lb
-  name: application-lb
+    testing.upbound.io/example-name: sample-app-alb
+  name: sample-app-alb
 spec:
-  deletionPolicy: Orphan
   forProvider:
     enableDeletionProtection: false #default
     internal: true
     loadBalancerType: application #default
-    name: application-lb
+    name: sample-app-alb
     region: us-east-1
     securityGroupSelector:
       matchLabels:

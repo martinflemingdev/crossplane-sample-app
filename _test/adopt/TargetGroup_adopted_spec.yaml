@@ -1,0 +1,31 @@
+Spec:
+  Deletion Policy:  Delete
+  For Provider:
+    Deregistration Delay:  300
+    Health Check:
+      Enabled:                      true
+      Healthy Threshold:            5
+      Interval:                     30
+      Matcher:                      200
+      Path:                         /
+      Port:                         traffic-port
+      Protocol:                     HTTP
+      Timeout:                      5
+      Unhealthy Threshold:          2
+    Load Balancing Algorithm Type:  round_robin
+    Name:                           sample-app-target-group
+    Port:                           8081
+    Protocol:                       HTTP
+    Protocol Version:               HTTP1
+    Region:                         us-east-1
+    Stickiness:
+      Cookie Duration:  86400
+      Type:             lb_cookie
+    Tags:
+      Crossplane - Kind:            lbtargetgroup.elbv2.aws.upbound.io
+      Crossplane - Name:            http-target-group
+      Crossplane - Providerconfig:  default
+    Target Type:                    ip
+    Vpc Id:                         vpc-4df36730
+  Provider Config Ref:
+    Name:  default

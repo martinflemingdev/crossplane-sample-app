@@ -1,0 +1,25 @@
+Spec:
+  Deletion Policy:  Delete
+  For Provider:
+    Desync Mitigation Mode:            defensive
+    Enable Cross Zone Load Balancing:  true
+    enableHttp2:                       true
+    Idle Timeout:                      60
+    Ip Address Type:                   ipv4
+    Load Balancer Type:                application
+    Name:                              sample-app-lb
+    Region:                            us-east-1
+    Security Groups:
+      sg-0f61a695d689960ee
+    Subnet Mapping:
+      Subnet Id:  subnet-2b909866
+      Subnet Id:  subnet-5f88ce7e
+    Subnets:
+      subnet-2b909866
+      subnet-5f88ce7e
+    Tags:
+      Crossplane - Kind:            lb.elbv2.aws.upbound.io
+      Crossplane - Name:            application-lb
+      Crossplane - Providerconfig:  default
+  Provider Config Ref:
+    Name:  default
