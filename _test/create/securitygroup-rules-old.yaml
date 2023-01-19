@@ -1,0 +1,189 @@
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule1-us-east-1
+  name: sg-rule1-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 80
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    toPort: 80
+    type: ingress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule2-us-east-1
+  name: sg-rule2-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 443
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    toPort: 443
+    type: ingress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule5-us-east-1
+  name: sg-rule5-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlocks:       # conflicts with self
+    - 0.0.0.0/0
+    fromPort: 22
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    # self: true          # conflicts with cidrBlocks
+    toPort: 22
+    type: ingress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule3-us-east-1
+  name: sg-rule3-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 80
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    toPort: 80
+    type: egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule4-us-east-1
+  name: sg-rule4-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 443
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    toPort: 443
+    type: egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule6-us-east-1
+  name: sg-rule6-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 22
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    toPort: 22
+    type: egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule7-us-east-1
+  name: sg-rule7-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 8081
+    toPort: 8081
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    type: ingress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule8-us-east-1
+  name: sg-rule8-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    fromPort: 8081
+    toPort: 8081
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    type: egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-rule9-us-east-1
+  name: sg-rule9-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    cidrBlocks:       # conflicts with self
+    - 0.0.0.0/0
+    description: egress to reach ECS service in public AWS 
+    fromPort: 0
+    toPort: 65535
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    # self: true          # conflicts with cidrBlocks
+    type: egress
