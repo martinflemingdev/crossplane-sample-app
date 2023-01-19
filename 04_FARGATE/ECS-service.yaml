@@ -31,10 +31,10 @@ spec:
         #
         # no selector option for targetGroupArn? must be hardcoded??
         # targetGroupArn: << FILL_THIS_IN >>
-        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/006f78dcfa4f2951
+        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/de1a4b510f38f664
     # networkConfiguration required for FARGATE (networkMode: awsvpc)
     networkConfiguration: 
-      - assignPublicIp: false
+      - assignPublicIp: true
         securityGroupSelector:
           matchLabels:
             testing.upbound.io/example-name: sg-us-east-1

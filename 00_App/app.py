@@ -16,7 +16,7 @@ def home():
 
 @app.route('/app')
 def path():
-    return "Hello, from App Path!"
+    return "\n\nHello, from App Path!\n\n"
 
 @app.route('/rds')
 def db_query():
