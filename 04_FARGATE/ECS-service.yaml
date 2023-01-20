@@ -29,7 +29,7 @@ spec:
       - containerName: sample-app-container	
         containerPort: 8081
         #
-        # no selector option for targetGroupArn? must be hardcoded??
+        # no Selector or Ref option for targetGroupArn?? must be hardcoded??
         # targetGroupArn: << FILL_THIS_IN >>
         targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/de1a4b510f38f664
     # networkConfiguration required for FARGATE (networkMode: awsvpc)

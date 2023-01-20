@@ -21,8 +21,20 @@ spec:
             "Resource": "*"
           },
           {
-            "Action": "ec2:*",
+            "Action": "ecs:*",
             "Effect": "Allow",
+            "Resource": "*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
             "Resource": "*"
           }
         ]
