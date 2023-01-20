@@ -1,7 +1,7 @@
 from flask import render_template
 from flask import Flask
-from db import query_rds
-import traceback, os
+from db import query_rds, create_table
+import traceback, os, time
 from dotenv import load_dotenv
 
 load_dotenv() 
@@ -31,4 +31,11 @@ def db_query():
 
 
 if __name__ == '__main__':
+    rds_spinning_up = True
+    while rds_spinning_up:
+        try:
+            create_table(hostname, dbname, port, user, password)
+            rds_spinning_up = False
+        except:
+            time.sleep(10)
     app.run(threaded=True,host='0.0.0.0',port=8081)

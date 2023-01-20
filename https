@@ -1,0 +1,36 @@
+write cloudformation for an ALB https target group wtih certificate example
+
+AWSTemplateFormatVersion: 2010-09-09
+ 
+Resources: 
+  ALBTargetGroup: 
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties: 
+      Name: ALB-TargetGroup
+      Port: 443
+      Protocol: HTTPS
+      VpcId: <VPC ID>
+      TargetType: instance
+      HealthCheckProtocol: HTTPS
+      HealthCheckPort: 443
+      HealthCheckPath: /
+      HealthCheckEnabled: true
+      HealthCheckIntervalSeconds: 30
+      HealthCheckTimeoutSeconds: 5
+      HealthyThresholdCount: 3
+      UnhealthyThresholdCount: 5
+      Matcher:
+        HttpCode: "200-399"
+ 
+  ALBListenerCertificate: 
+    Type: AWS::ACM::Certificate
+    Properties: 
+      DomainName: <YOUR DOMAIN>
+      ValidationMethod: DNS
+ 
+  ALBListener: 
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties: 
+      DefaultActions: 
+        - Type: forward
+          Target
