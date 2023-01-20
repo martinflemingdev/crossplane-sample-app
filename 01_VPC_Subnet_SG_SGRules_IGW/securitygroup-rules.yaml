@@ -85,3 +85,25 @@ spec:
         testing.upbound.io/example-name: sg-us-east-1
     # self: true          # conflicts with cidrBlocks
     type: egress
+---
+apiVersion: ec2.aws.upbound.io/v1beta1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: rds-postgres-ingress
+  name: rds-postgres-ingress
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    # cidrBlocks:       # conflicts with self
+    # - 0.0.0.0/0
+    description: rds-postgres-ingress
+    fromPort: 5432
+    toPort: 5432
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    self: true          # conflicts with cidrBlocks
+    type: ingress

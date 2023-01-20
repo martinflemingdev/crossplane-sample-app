@@ -1,10 +1,10 @@
 apiVersion: rds.aws.upbound.io/v1beta1
 kind: Instance
 metadata:
-  labels:
-    testing.upbound.io/example-name: rds-sample-app-instance
   annotations:
     upjet.upbound.io/manual-intervention: This resource has a password secret reference.
+  labels:
+    testing.upbound.io/example-name: rds-sample-app-instance
   name: rds-sample-app-instance
 spec:
   forProvider:
@@ -30,6 +30,9 @@ spec:
     storageEncrypted: false
     storageType: gp2
     username: adminuser
-  writeConnectionSecretToRef:
-    name: rds-sample-app-secret-out
-    namespace: upbound-system
+    vpcSecurityGroupIdRefs:
+    - name: sg-us-east-1
+    # Just creates another secret api resource
+  # writeConnectionSecretToRef:
+  #   name: rds-sample-app-secret-out
+  #   namespace: upbound-system

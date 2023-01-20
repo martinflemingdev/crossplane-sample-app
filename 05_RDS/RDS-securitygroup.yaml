@@ -1,0 +1,24 @@
+# apiVersion: rds.aws.upbound.io/v1beta1
+# kind: SecurityGroup
+# metadata:
+#   labels:
+#     testing.upbound.io/example-name: rds-sg-ingress
+#   name: rds-sg-ingress
+# spec:
+#   forProvider:
+#     ingress:
+#       # No 'Selector' field to use matchLabels?
+#     - securityGroupName: sg-us-east-1
+#     region: us-east-1
+# ---
+# apiVersion: rds.aws.upbound.io/v1beta1
+# kind: SecurityGroup
+# metadata:
+#   labels:
+#     testing.upbound.io/example-name: rds-public-ingress
+#   name: rds-public-ingress
+# spec:
+#   forProvider:
+#     ingress:
+#       - cidr: 0.0.0.0/0
+#     region: us-east-1

@@ -7,6 +7,8 @@ metadata:
 spec:
   forProvider:
     ami: ami-0b5eea76982371e91
+    associatePublicIpAddress: true
+    iamInstanceProfile: ec2-instance-profile
     instanceType: t2.micro
     keyName: upbound-test
     region: us-east-1

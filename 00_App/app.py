@@ -5,8 +5,8 @@ import traceback
 
 app = Flask(__name__)
 hostname = "<hostname>"
-dbname = "<dbname>"
-user = "<user>"
+dbname = "SampleAppDB"
+user = "adminuser"
 password = "<password>"
 query = "SELECT * FROM table_name;"
 

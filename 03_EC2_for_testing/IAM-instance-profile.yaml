@@ -1,0 +1,11 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: InstanceProfile
+metadata:
+  labels:
+    testing.upbound.io/example-name: ec2-instance-profile
+  name: ec2-instance-profile
+spec:
+  forProvider:
+    roleSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ec2-to-rds
