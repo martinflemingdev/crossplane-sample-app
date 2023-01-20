@@ -8,5 +8,5 @@ spec:
   forProvider:
     imageScanningConfiguration:
       - scanOnPush: true
-    imageTagMutability: IMMUTABLE
+    imageTagMutability: MUTABLE
     region: us-east-1

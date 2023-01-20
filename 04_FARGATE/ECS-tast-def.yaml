@@ -31,6 +31,8 @@ spec:
     region: us-east-1
     requiresCompatibilities: 
       - FARGATE
+    # WHY IS THIS AN ARN ONLY? NO Ref or matchLabels Selector?
+    taskRoleArn: arn:aws:iam::011882408883:role/ecs-to-rds
 
 # "PortMappings": [
   # {

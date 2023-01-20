@@ -1,14 +1,17 @@
 from flask import render_template
 from flask import Flask
 from db import query_rds
-import traceback
+import traceback, os
+from dotenv import load_dotenv
 
+load_dotenv() 
 app = Flask(__name__)
-hostname = "<hostname>"
-dbname = "SampleAppDB"
-user = "adminuser"
-password = "<password>"
-query = "SELECT * FROM table_name;"
+hostname = os.getenv('host')
+dbname = os.getenv('database')
+user = os.getenv('user')
+password = os.getenv('password')
+port = os.getenv('port')
+query = "SELECT * FROM test;"
 
 @app.route('/')
 def home():
@@ -21,7 +24,7 @@ def path():
 @app.route('/rds')
 def db_query():
     try:
-        result = query_rds(hostname, dbname, user, password, query)
+        result = query_rds(hostname, dbname, port, user, password, query)
         return str(result)
     except:
         return str(traceback.format_exc())

@@ -1,11 +1,11 @@
-def query_rds(hostname, dbname, user, password, query):
+def query_rds(hostname, dbname, port, user, password, query):
     import psycopg2
     conn = psycopg2.connect(
-        database="my-rds-table-name",
-        user="my_user_name",
-        password="",
-        host="my-rds-table-name.123456.us-east-1.rds.amazonaws.com",
-        port='5432'
+        database=dbname,
+        user=user,
+        password=password,
+        host=hostname,
+        port=port
     )
     cursor = conn.cursor()
     cursor.execute(query)
@@ -19,7 +19,6 @@ def query_rds(hostname, dbname, user, password, query):
 # python3 -m pip install pandas
 def create_table():
     import psycopg2
-    import pandas as pd
     conn = psycopg2.connect(database="SampleAppDB",user="adminuser",password='',host="rds-sample-app-instance.cslbyggrhpq2.us-east-1.rds.amazonaws.com",port='5432')
     cur = conn.cursor()
     cur.execute("CREATE TABLE test (id serial PRIMARY KEY, name varchar, data varchar);")
