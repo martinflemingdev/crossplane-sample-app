@@ -25,7 +25,7 @@ def path():
 def db_query():
     try:
         result = query_rds(hostname, dbname, port, user, password, query)
-        return str(result)
+        return f"\n\n{str(result)}\n\n"
     except:
         return str(traceback.format_exc())
 

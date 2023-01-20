@@ -90,8 +90,8 @@ apiVersion: ec2.aws.upbound.io/v1beta1
 kind: SecurityGroupRule
 metadata:
   labels:
-    testing.upbound.io/example-name: rds-postgres-ingress
-  name: rds-postgres-ingress
+    testing.upbound.io/example-name: self-rds-postgres-ingress
+  name: self-rds-postgres-ingress
 spec:
   deletionPolicy: Delete
   forProvider:
