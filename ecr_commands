@@ -11,3 +11,4 @@ docker push YOURACCOUNT.dkr.ecr.YOURREGION.amazonaws.com/YOURREPO:YOURTAG
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 011882408883.dkr.ecr.us-east-1.amazonaws.com
 docker tag sample-app:latest 011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
 docker push 011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+aws ecs update-service --cluster sample-app-cluster --service sample-app-service --force-new-deployment
