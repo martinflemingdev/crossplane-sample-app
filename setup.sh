@@ -19,7 +19,7 @@ echo "installing universal crossplane..."
 up uxp install # creates upbound-system namespace
 echo "sleep 30 seconds for CRDs to become available from helm chart install..."
 sleep 30
-kubectl apply -f /home/martinfleming/src/upbound/provider.yaml
+kubectl apply -f provider.yaml
 
 echo "sleep 60 seconds for provider to become healthy..."
 sleep 60

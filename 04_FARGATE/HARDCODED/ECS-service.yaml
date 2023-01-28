@@ -31,7 +31,7 @@ spec:
         #
         # no Selector or Ref option for targetGroupArn?? must be hardcoded??
         # targetGroupArn: << FILL_THIS_IN >>
-        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/54bf2307f324d3e6
+        targetGroupArn: arn:aws:elasticloadbalancing:us-east-1:011882408883:targetgroup/sample-app-target-group/70c077ff70d257a2
     # networkConfiguration required for FARGATE (networkMode: awsvpc)
     networkConfiguration: 
       - assignPublicIp: true

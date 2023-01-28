@@ -1,0 +1,28 @@
+apiVersion: elbv2.aws.upbound.io/v1beta1
+kind: LBListener
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-https-listener
+  name: sample-app-https-listener
+spec:
+  forProvider:
+    # certificateArn: arn:aws:acm:us-east-1:011882408883:certificate/ca52d3e9-d626-43aa-b0fe-ccdb1ec65d44
+    defaultAction:
+    - type: fixed-response
+      fixedResponse:
+        - contentType: text/plain
+          messageBody: https-listener rule reached
+          statusCode: "200"
+    # - forward:
+    #   - targetGroup:
+    #     # - arn: << FILL_THIS_IN >>
+    #     - arnSelector:
+    #         matchLabels:
+    #           testing.upbound.io/example-name: sample-app-target-group
+    #   type: forward
+    loadBalancerArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sample-app-alb
+    port: 443
+    protocol: HTTPS
+    region: us-east-1
