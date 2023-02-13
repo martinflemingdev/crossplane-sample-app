@@ -1,0 +1,16 @@
+apiVersion: elbv2.aws.crossplane.io/v1alpha1
+kind: TargetGroup
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-target-group
+  name: sample-app-target-group
+spec:
+  forProvider:
+    name: sample-app-target-group
+    port: 8081
+    protocol: HTTP
+    region: us-east-1
+    targetType: ip
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc-us-east-1

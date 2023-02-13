@@ -1,0 +1,14 @@
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: RolePolicyAttachment
+metadata:
+  labels:
+    testing.upbound.io/example-name: ecs-role-policy-attachment
+  name: ecs-role-policy-attachment
+spec:
+  forProvider:
+    policyArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ecs-allow-policy
+    roleNameSelector:
+      matchLabels: 
+        testing.upbound.io/example-name: ecs-to-rds

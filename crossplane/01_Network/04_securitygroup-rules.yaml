@@ -1,0 +1,94 @@
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: ssh-into-ec2-ingress
+  name: ssh-into-ec2-ingress
+spec:
+  forProvider:
+    cidrBlock: 0.0.0.0/0
+    description: ssh-into-ec2-ingress
+    fromPort: 22
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    toPort: 22
+    type: ingress
+---
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: self-http-ingress
+  name: self-http-ingress
+spec:
+  forProvider:
+    cidrBlock: 10.0.0.0/16
+    description: self-http-ingress
+    fromPort: 80
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    toPort: 80
+    type: ingress
+---
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: self-alb-targetgroup-health-check-ingress
+  name: self-alb-targetgroup-health-check-ingress
+spec:
+  forProvider:
+    cidrBlock: 10.0.0.0/16
+    description: self-http-ingress
+    fromPort: 8081
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    toPort: 8081
+    type: ingress
+---
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: ecs-service-egress
+  name: ecs-service-egress
+spec:
+  forProvider:
+    cidrBlock: 0.0.0.0/0
+    description: ecs-service-egress
+    fromPort: 0
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    toPort: 65535
+    type: egress
+---
+apiVersion: ec2.aws.crossplane.io/v1alpha1
+kind: SecurityGroupRule
+metadata:
+  labels:
+    testing.upbound.io/example-name: self-rds-postgres-ingress
+  name: self-rds-postgres-ingress
+spec:
+  forProvider:
+    cidrBlock: 10.0.0.0/16
+    description: rds-postgres-ingress
+    fromPort: 5432
+    protocol: tcp
+    region: us-east-1
+    securityGroupIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    toPort: 5432
+    type: ingress

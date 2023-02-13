@@ -1,0 +1,12 @@
+apiVersion: ecr.aws.crossplane.io/v1beta1
+kind: Repository
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app
+  name: sample-app
+spec:
+  forProvider:
+    imageScanningConfiguration:
+      scanOnPush: true
+    imageTagMutability: MUTABLE
+    region: us-east-1

@@ -1,0 +1,27 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  labels:
+    testing.upbound.io/example-name: sg-us-east-1
+  name: sg-us-east-1
+spec:
+  deletionPolicy: Delete
+  forProvider:
+    description: sample-app-security-group                # REQUIRED
+    groupName: sample-app-security-group                  # REQUIRED
+    # egress:
+    #   - fromPort: -1
+    #     ipProtocol: "-1"
+    #     ipRanges:
+    #       - cidrIp: 0.0.0.0/0
+    #     toPort: -1
+    # ingress:
+    #   - fromPort: 443
+    #     ipProtocol: tcp
+    #     ipRanges:
+    #       - cidrIp: 0.0.0.0/0
+    #     toPort: 443
+    region: us-east-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: vpc-us-east-1

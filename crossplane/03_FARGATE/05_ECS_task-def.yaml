@@ -1,0 +1,32 @@
+apiVersion: ecs.aws.crossplane.io/v1alpha1
+kind: TaskDefinition
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-task
+  name: sample-app-task
+spec:
+  forProvider:
+    family: example-taskdefinition
+    cpu: "1024"
+    memory: "2048"
+    networkMode: awsvpc
+    requiresCompatibilities:
+      - FARGATE
+    executionRoleARNSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ecs-to-rds
+    taskRoleARNSelector:
+      matchLabels:
+        testing.upbound.io/example-name: ecs-to-rds
+    region: us-east-1
+    containerDefinitions:
+      - name: sample-app-container
+        image: 011882408883.dkr.ecr.us-east-1.amazonaws.com/sample-app:latest
+        cpu: 0
+        image: bitnami/wordpress
+        memoryReservation: 2048
+        essential: true
+        portMappings:
+          - containerPort: 8081
+            hostPort: 8081
+            protocol: tcp

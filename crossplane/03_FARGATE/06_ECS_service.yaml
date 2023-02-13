@@ -1,0 +1,33 @@
+apiVersion: ecs.aws.crossplane.io/v1alpha1
+kind: Service
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-service
+  name: sample-app-service
+spec:
+  forProvider:
+    clusterSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sample-app-cluster
+    desiredCount: 1
+    launchType: FARGATE
+    loadBalancers:
+    - containerName: sample-app-container
+      containerPort: 8081
+      targetGroupARNSelector:
+        matchLabels:
+          testing.upbound.io/example-name: sample-app-target-group
+    networkConfiguration:
+      awsvpcConfiguration:
+        assignPublicIP: ENABLED
+        securityGroupSelector:
+          matchLabels:
+            testing.upbound.io/example-name: sg-us-east-1
+        subnetSelector:
+          matchLabels:
+            all-subnets: included
+    region: us-east-1
+    schedulingStrategy: REPLICA
+    taskDefinitionSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sample-app-task

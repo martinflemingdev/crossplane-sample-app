@@ -1,0 +1,23 @@
+apiVersion: elbv2.aws.crossplane.io/v1alpha1
+kind: Listener
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-listener
+  name: sample-app-listener
+spec:
+  forProvider:
+    defaultActions:
+    - actionType: forward
+      # forwardConfig:
+      #   targetGroups:
+      #     - targetGroupArnRef:
+      #         name: test-targetgroup
+      targetGroupArnSelector:
+        matchLabels:
+          testing.upbound.io/example-name: sample-app-target-group
+    loadBalancerArnSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sample-app-alb
+    port: 80
+    protocol: HTTP
+    region: us-east-1

@@ -1,0 +1,13 @@
+apiVersion: ecs.aws.crossplane.io/v1alpha1
+kind: Cluster
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-cluster
+  name: sample-app-cluster
+spec:
+  forProvider:
+    # capacityProviders:
+    #   - FARGATE
+      # - FARGATE_SPOT
+    clusterName: sample-app-cluster
+    region: us-east-1

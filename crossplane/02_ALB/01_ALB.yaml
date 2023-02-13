@@ -1,0 +1,18 @@
+apiVersion: elbv2.aws.crossplane.io/v1alpha1
+kind: LoadBalancer
+metadata:
+  labels:
+    testing.upbound.io/example-name: sample-app-alb
+  name: sample-app-alb
+spec:
+  forProvider:
+    loadBalancerType: application
+    name: sample-app-alb
+    region: us-east-1
+    scheme: internal
+    securityGroupSelector:
+      matchLabels:
+        testing.upbound.io/example-name: sg-us-east-1
+    subnetSelector:
+      matchLabels:
+        all-subnets: included
