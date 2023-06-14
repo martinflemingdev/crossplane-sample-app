@@ -3,11 +3,11 @@ kind: Provider
 metadata:
   name: provider-aws-upbound
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws:v0.27.0
+  package: xpkg.upbound.io/upbound/provider-aws:v0.31.0
 ---
-apiVersion: pkg.crossplane.io/v1
-kind: Provider
-metadata:
-  name: provider-aws-crossplane
-spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.36.0
+# apiVersion: pkg.crossplane.io/v1
+# kind: Provider
+# metadata:
+#   name: provider-aws-crossplane
+# spec:
+#   package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.36.0

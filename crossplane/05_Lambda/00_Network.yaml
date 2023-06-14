@@ -1,0 +1,66 @@
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
+metadata:
+  labels:
+    testing.upbound.io/example-name: prod-vpc-us-east-1
+  name: prod-vpc-us-east-1
+spec:
+  forProvider:
+    cidrBlock: 10.0.0.0/16
+    region: us-east-1
+  providerConfigRef:
+    name: prod
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: prod-subnet-us-east-1a
+    prod-all-subnets: included
+  name: prod-subnet-us-east-1a
+spec:
+  forProvider:
+    availabilityZone: us-east-1a
+    cidrBlock: 10.0.0.0/18
+    region: us-east-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: prod-vpc-us-east-1
+  providerConfigRef:
+    name: prod
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: prod-subnet-us-east-1b
+    prod-all-subnets: included
+  name: prod-subnet-us-east-1b
+spec:
+  forProvider:
+    availabilityZone: us-east-1b
+    cidrBlock: 10.0.64.0/18
+    region: us-east-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: prod-vpc-us-east-1
+  providerConfigRef:
+    name: prod
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  labels:
+    testing.upbound.io/example-name: prod-subnet-us-east-1c
+    prod-all-subnets: included
+  name: prod-subnet-us-east-1c
+spec:
+  forProvider:
+    availabilityZone: us-east-1c
+    cidrBlock: 10.0.128.0/18
+    region: us-east-1
+    vpcIdSelector:
+      matchLabels:
+        testing.upbound.io/example-name: prod-vpc-us-east-1
+  providerConfigRef:
+    name: prod

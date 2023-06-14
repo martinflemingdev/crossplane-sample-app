@@ -1,0 +1,26 @@
+apiVersion: iam.aws.crossplane.io/v1beta1
+kind: Role
+metadata:
+  name: prod-lambdarole
+spec:
+  forProvider:
+    assumeRolePolicyDocument: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Effect": "Allow",
+                "Principal": {
+                    "Service": [
+                        "lambda.amazonaws.com"
+                    ]
+                },
+                "Action": [
+                    "sts:AssumeRolerolepolicyattachment.iam.aws.crossplane.io/prod-lambda-attach
+                    rolepolicyattachment.iam.aws.crossplane.io/prod-lambda-attach
+                ]
+            }
+        ]
+      }
+  providerConfigRef:
+    name: prod

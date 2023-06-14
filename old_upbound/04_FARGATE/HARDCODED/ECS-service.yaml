@@ -11,17 +11,17 @@ metadata:
 spec:
   forProvider:
     # according to Upbound docs, cluster should be the ARN, but throws "InvalidParameterException: Unsupported resource type: cluster:"
-    # needs to be just the name of the cluster, not ARN
+    # works when given the name of the cluster, not ARN
     cluster: sample-app-cluster 
     #
     # The other two cluster field options also don't work because it resolves to ARN, API request just wants cluster name
     #
     # clusterSelector:
     #   matchLabels:
-    #     testing.upbound.io/example-name: sampleappecs
+    #     testing.upbound.io/example-name: sample-app-cluster
     #
     # clusterRef:
-    #   name: sampleappecs
+    #   name: sample-app-cluster
     #
     desiredCount: 1
     launchType: FARGATE
