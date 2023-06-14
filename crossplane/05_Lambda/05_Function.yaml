@@ -1,0 +1,23 @@
+apiVersion: lambda.aws.crossplane.io/v1beta1
+kind: Function
+metadata:
+  name: prod-function
+spec:
+  forProvider:
+    code:
+      s3Bucket: prod-lambda-code-bucket0987654321
+      s3Key: lambda-to-rds.zip
+    handler: lambda-to-rds.zip
+    runtime: python3.10
+    region: us-east-1
+    roleRef:
+      name: prod-lambdarole
+    vpcConfig:
+      securityGroupIDRefs:
+      - name: prod-lambda-sg
+      subnetIDRefs:
+      - name: prod-subnet-us-east-1a
+      - name: prod-subnet-us-east-1b
+      - name: prod-subnet-us-east-1c
+  providerConfigRef:
+    name: prod
