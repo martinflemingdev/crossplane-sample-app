@@ -27,4 +27,4 @@ echo "creating secret and applying providerConfig..."
 kubectl create secret generic aws-creds -n crossplane-system --from-file=creds=./creds.conf
 echo applying aws-creds
 
-kubectl apply -f /home/martinfleming/src/crossplane/aws-providerconfig.yaml
+kubectl apply -f /home/martinfleming/src/crossplane-sample-app/crossplane/aws-providerconfig.yaml

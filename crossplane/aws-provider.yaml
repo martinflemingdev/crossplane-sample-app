@@ -1,6 +1,20 @@
+apiVersion: pkg.crossplane.io/v1alpha1
+kind: ControllerConfig
+metadata:
+  name: default
+spec:
+  podSecurityContext:
+    fsGroup: 2000
+  args:
+  - '--debug'
+  securityContext:
+    runAsUser: 0
+---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: provider-aws-crossplane
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.36.1
+  package: xpkg.upbound.io/crossplane-contrib/provider-aws:v0.37.0
+  controllerConfigRef:
+    name: default

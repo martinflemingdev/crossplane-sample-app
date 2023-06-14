@@ -1,3 +1,4 @@
+# general account
 apiVersion: aws.crossplane.io/v1beta1
 kind: ProviderConfig
 metadata:
@@ -8,4 +9,17 @@ spec:
     secretRef:
       namespace: crossplane-system
       name: aws-creds
+      key: creds
+---
+# prod account
+apiVersion: aws.crossplane.io/v1beta1
+kind: ProviderConfig
+metadata:
+  name: prod
+spec:
+  credentials:
+    source: Secret
+    secretRef:
+      namespace: crossplane-system
+      name: aws-creds-prod
       key: creds
