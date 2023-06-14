@@ -9,18 +9,12 @@ spec:
   forProvider:
     description: sample-app-security-group                # REQUIRED
     groupName: sample-app-security-group                  # REQUIRED
-    # egress:
-    #   - fromPort: -1
-    #     ipProtocol: "-1"
-    #     ipRanges:
-    #       - cidrIp: 0.0.0.0/0
-    #     toPort: -1
     # ingress:
-    #   - fromPort: 443
+    #   - fromPort: 5432
     #     ipProtocol: tcp
     #     ipRanges:
     #       - cidrIp: 0.0.0.0/0
-    #     toPort: 443
+    #     toPort: 5432
     region: us-east-1
     vpcIdSelector:
       matchLabels:

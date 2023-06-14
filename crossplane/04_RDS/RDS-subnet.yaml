@@ -1,21 +1,14 @@
-apiVersion: rds.aws.upbound.io/v1beta1
-kind: SubnetGroup
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: DBSubnetGroup
 metadata:
   labels:
     testing.upbound.io/example-name: rds-subnet-group
   name: rds-subnet-group
 spec:
   forProvider:
+    description: rds-subnet-group
     region: us-east-1
-    #
-    # Can't use matchLabels where key (testing.upbound.io/example-name)
-    # is the same, but the values are different? 
-    # If it violates unique key restraint, why not make matchLabels an array?
-    #
-    # subnetIdSelector:
-    #   matchLabels:
-    #     testing.upbound.io/example-name: subnet-us-east-1a
-    #     testing.upbound.io/example-name: subnet-us-east-1b
     subnetIdRefs:
     - name: subnet-us-east-1a
     - name: subnet-us-east-1b
+    - name: subnet-us-east-1c

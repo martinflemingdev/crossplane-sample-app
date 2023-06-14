@@ -1,5 +1,5 @@
-apiVersion: rds.aws.upbound.io/v1beta1
-kind: Instance
+apiVersion: rds.aws.crossplane.io/v1alpha1
+kind: DBInstance
 metadata:
   annotations:
     upjet.upbound.io/manual-intervention: This resource has a password secret reference.
@@ -8,29 +8,32 @@ metadata:
   name: rds-sample-app-instance
 spec:
   forProvider:
-    dbSubnetGroupNameSelector:
-      matchLabels:
-        testing.upbound.io/example-name: rds-subnet-group
     allocatedStorage: 20
+    allowMajorVersionUpgrade: true
+    applyImmediately: true
     autoMinorVersionUpgrade: true
+    autogeneratePassword: true
     backupRetentionPeriod: 14
-    backupWindow: 09:46-10:16
+    dbInstanceClass: db.t3.micro
+    dbName: example
+    dbSubnetGroupNameRef: 
+      name: rds-subnet-group
+    deleteAutomatedBackups: true
     engine: postgres
     engineVersion: "13.7"
-    instanceClass: db.t3.micro
-    maintenanceWindow: Mon:00:00-Mon:03:00
-    name: SampleAppDB # DBName must begin with a letter and contain only alphanumeric characters
-    passwordSecretRef:
+    masterUserPasswordSecretRef:
       key: password
       name: rds-instance-secret
-      namespace: upbound-system
+      namespace: crossplane-system
+    masterUsername: postgres
+    preferredBackupWindow: 7:00-8:00
+    preferredMaintenanceWindow: Sat:8:00-Sat:11:00
     publiclyAccessible: false
     region: us-east-1
     skipFinalSnapshot: true
     storageEncrypted: false
     storageType: gp2
-    username: adminuser
-    vpcSecurityGroupIdRefs:
+    vpcSecurityGroupIDRefs:
     - name: sg-us-east-1
     # Just creates another secret api resource
   # writeConnectionSecretToRef:
