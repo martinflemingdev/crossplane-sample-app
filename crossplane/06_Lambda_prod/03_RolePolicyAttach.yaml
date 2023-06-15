@@ -8,5 +8,5 @@ spec:
       name: prod-lambdapolicy
     roleNameRef:
       name: prod-lambdarole
-  # providerConfigRef:
-  #   name: prod
+  providerConfigRef:
+    name: prod

@@ -16,7 +16,7 @@ spec:
     groupName: prod-lambda-sg
     region: us-east-1
     vpcIdRef:
-      # name: prod-vpc-us-east-1
-      name: vpc-us-east-1
-  # providerConfigRef:
-  #   name: prod
+      name: prod-vpc-us-east-1
+      # name: vpc-us-east-1
+  providerConfigRef:
+    name: prod
