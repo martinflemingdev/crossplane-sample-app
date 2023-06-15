@@ -5,16 +5,17 @@ metadata:
     testing.upbound.io/example-name: sg-us-east-1
   name: sg-us-east-1
 spec:
-  deletionPolicy: Delete
   forProvider:
-    description: sample-app-security-group                # REQUIRED
-    groupName: sample-app-security-group                  # REQUIRED
-    # ingress:
-    #   - fromPort: 5432
-    #     ipProtocol: tcp
-    #     ipRanges:
-    #       - cidrIp: 0.0.0.0/0
-    #     toPort: 5432
+    description: dev-security-group                # REQUIRED
+    groupName: dev-security-group                  # REQUIRED
+    ingress:
+      - fromPort: 5432
+        ipProtocol: tcp
+        toPort: 5432
+        userIdGroupPairs:
+        - groupId: sg-0add1a6fd4ee893be
+          userId: "126251989794"
+          # vpcId: vpc-0d88068f52bb517ef
     region: us-east-1
     vpcIdSelector:
       matchLabels:
