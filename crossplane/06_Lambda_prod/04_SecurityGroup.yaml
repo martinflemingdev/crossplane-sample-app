@@ -1,22 +1,42 @@
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: SecurityGroup
 metadata:
+  labels:
+    testing.upbound.io/example-name: prod-lambda-sg
   name: prod-lambda-sg
 spec:
   forProvider:
     description: prod-lambda-sg
-    egress: []
-    # - fromPort: 5432
-    #   ipProtocol: tcp
-    #   toPort: 5432
-      # userIdGroupPairs:
-      # - groupId: sg-0d526968e3e6d963e
-      #   userId: "011882408883" 
-        # vpcId: vpc-07c0ecd79cd8c98c1
     groupName: prod-lambda-sg
+    egress:
+    # to dev account WORKS WITH CIDR
+      # - fromPort: 5432
+      #   ipProtocol: tcp
+      #   toPort: 5432
+      #   ipRanges:
+      #     - cidrIp: 10.0.0.0/16
+    # to dev account WORKS with labels and account #
+      # - fromPort: 5432
+      #   ipProtocol: tcp
+      #   toPort: 5432
+      #   userIdGroupPairs:
+      #   - groupIdSelector:
+      #       matchLabels: 
+      #         testing.upbound.io/example-name: sg-us-east-1
+      #     vpcIdSelector:
+      #       matchLabels: 
+      #         testing.upbound.io/example-name: vpc-us-east-1
+      #     userId: "011882408883"
+    # to dev account WORKS using labels and account #
+      - fromPort: 5432
+        ipProtocol: tcp
+        toPort: 5432
+        userIdGroupPairs:
+        - groupId: sg-0d526968e3e6d963e
+          userId: "011882408883"
+          vpcId: vpc-07c0ecd79cd8c98c1
     region: us-east-1
     vpcIdRef:
       name: prod-vpc-us-east-1
-      # name: vpc-us-east-1
   providerConfigRef:
     name: prod

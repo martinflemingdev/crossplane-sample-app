@@ -13,6 +13,9 @@ spec:
     - subnetIdSelector:
         matchLabels:
           testing.upbound.io/example-name: subnet-us-east-1b
+    - subnetIdSelector:
+        matchLabels:
+          testing.upbound.io/example-name: subnet-us-east-1c
     region: us-east-1
     vpcIdSelector:
       matchLabels:

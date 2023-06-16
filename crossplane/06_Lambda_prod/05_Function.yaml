@@ -6,7 +6,6 @@ spec:
   forProvider:
     code:
       s3Bucket: prod-lambda-code-bucket0987654321
-      # s3Bucket: lambda-to-rds
       s3Key: lambda-to-rds.zip
     handler: lambda-to-rds.hanlder
     runtime: python3.10
@@ -20,8 +19,5 @@ spec:
       - name: prod-subnet-us-east-1a
       - name: prod-subnet-us-east-1b
       - name: prod-subnet-us-east-1c
-      # - name: subnet-us-east-1a
-      # - name: subnet-us-east-1b
-      # - name: subnet-us-east-1c
   providerConfigRef:
     name: prod

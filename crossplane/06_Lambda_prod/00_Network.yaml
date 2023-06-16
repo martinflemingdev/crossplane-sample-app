@@ -2,11 +2,11 @@ apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: VPC
 metadata:
   labels:
-    ca
+    testing.upbound.io/example-name: prod-vpc-us-east-1
   name: prod-vpc-us-east-1
 spec:
   forProvider:
-    cidrBlock: 172.16.0.0/12 
+    cidrBlock: 172.16.0.0/16
     region: us-east-1
   providerConfigRef:
     name: prod

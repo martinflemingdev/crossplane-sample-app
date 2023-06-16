@@ -11,6 +11,6 @@ spec:
     routeTableIdSelector:
       matchLabels:
         testing.upbound.io/example-name: routetable-us-east-1
-    gatewayIdSelector:
-      matchLabels:
-        testing.upbound.io/example-name: internet-gateway-us-east-1
+    # gatewayIdSelector:
+    #   matchLabels:
+    #     testing.upbound.io/example-name: internet-gateway-us-east-1

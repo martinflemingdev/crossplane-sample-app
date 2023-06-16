@@ -9,15 +9,38 @@ spec:
     description: dev-security-group                # REQUIRED
     groupName: dev-security-group                  # REQUIRED
     ingress:
+    # inside dev account
       - fromPort: 5432
         ipProtocol: tcp
         toPort: 5432
         ipRanges:
           - cidrIp: 10.0.0.0/16
+    # to prod account WORKS with Cidr
+      # - fromPort: 5432
+      #   ipProtocol: tcp
+      #   toPort: 5432
+      #   ipRanges:
+      #     - cidrIp: 172.16.0.0/16
+    # to prod account WORKS using labels and account #
+      # - fromPort: 5432
+      #   ipProtocol: tcp
+      #   toPort: 5432
       #   userIdGroupPairs:
-      #   - groupId: sg-0add1a6fd4ee893be
+      #   - groupIdSelector:
+      #       matchLabels: 
+      #         testing.upbound.io/example-name: prod-lambda-sg
+      #     vpcIdSelector:
+      #       matchLabels: 
+      #         testing.upbound.io/example-name: prod-vpc-us-east-1
       #     userId: "126251989794"
-          # vpcId: vpc-0d88068f52bb517ef
+    # to prod account WORKS using labels and account #
+      - fromPort: 5432
+        ipProtocol: tcp
+        toPort: 5432
+        userIdGroupPairs:
+        - groupId: sg-0cf4ed43618a22375
+          userId: "126251989794"
+          vpcId: vpc-0a81c024b73962804
     region: us-east-1
     vpcIdSelector:
       matchLabels:
