@@ -12,9 +12,11 @@ spec:
       - fromPort: 5432
         ipProtocol: tcp
         toPort: 5432
-        userIdGroupPairs:
-        - groupId: sg-0add1a6fd4ee893be
-          userId: "126251989794"
+        ipRanges:
+          - cidrIp: 10.0.0.0/16
+      #   userIdGroupPairs:
+      #   - groupId: sg-0add1a6fd4ee893be
+      #     userId: "126251989794"
           # vpcId: vpc-0d88068f52bb517ef
     region: us-east-1
     vpcIdSelector:

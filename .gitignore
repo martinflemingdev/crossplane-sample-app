@@ -2,3 +2,4 @@ creds.conf
 upbound-test.pem
 .env
 creds-prod.conf
+test.json
