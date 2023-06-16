@@ -1,12 +1,10 @@
 apiVersion: iam.aws.crossplane.io/v1beta1
 kind: RolePolicyAttachment
 metadata:
-  name: prod-lambda-attach
+  name: lambda-attach
 spec:
   forProvider:
     policyArnRef:
-      name: prod-lambdapolicy
+      name: lambdapolicy
     roleNameRef:
-      name: prod-lambdarole
-  # providerConfigRef:
-  #   name: prod
+      name: lambdarole

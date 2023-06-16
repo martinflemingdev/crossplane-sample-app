@@ -1,7 +1,7 @@
 apiVersion: lambda.aws.crossplane.io/v1beta1
 kind: Function
 metadata:
-  name: prod-function
+  name: function
 spec:
   forProvider:
     code:
@@ -12,16 +12,11 @@ spec:
     runtime: python3.10
     region: us-east-1
     roleRef:
-      name: prod-lambdarole
+      name: lambdarole
     vpcConfig:
       securityGroupIDRefs:
-      - name: prod-lambda-sg
+      - name: lambda-sg
       subnetIDRefs:
-      # - name: prod-subnet-us-east-1a
-      # - name: prod-subnet-us-east-1b
-      # - name: prod-subnet-us-east-1c
       - name: subnet-us-east-1a
       - name: subnet-us-east-1b
       - name: subnet-us-east-1c
-  # providerConfigRef:
-  #   name: prod

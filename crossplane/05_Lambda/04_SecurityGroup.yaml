@@ -1,24 +1,17 @@
 apiVersion: ec2.aws.crossplane.io/v1beta1
 kind: SecurityGroup
 metadata:
-  name: prod-lambda-sg
+  name: lambda-sg
 spec:
   forProvider:
-    description: prod-lambda-sg
+    description: lambda-sg
     egress: 
     - fromPort: 5432
       ipProtocol: tcp
       toPort: 5432
-      # userIdGroupPairs:
-      # - groupId: sg-0d526968e3e6d963e
-      #   userId: "011882408883" 
-        # vpcId: vpc-07c0ecd79cd8c98c1
       ipRanges:
         - cidrIp: 10.0.0.0/16
     groupName: prod-lambda-sg
     region: us-east-1
     vpcIdRef:
-      # name: prod-vpc-us-east-1
       name: vpc-us-east-1
-  # providerConfigRef:
-  #   name: prod
